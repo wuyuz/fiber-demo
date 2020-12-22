@@ -27,4 +27,7 @@ func LandingRoutes(app fiber.Router) {
 	}))
 
 	app.Get("/", contraller.Landing)
+	app.Get("/permission",
+		contraller.GetPermission,
+		)
 }

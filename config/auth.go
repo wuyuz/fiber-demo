@@ -3,6 +3,7 @@ package config
 import (
 	"errors"
 	. "fiber-demo/app"
+	"fiber-demo/models"
 	"fiber-demo/rbac"
 	"fmt"
 	"github.com/casbin/casbin/v2"
@@ -35,7 +36,7 @@ func LoadAuthConfig() {
 func loadDefaultAuthConfig() {
 	ViperConfig.SetDefault("APP_JWT_SECRET", "SECRET_APP")
 	ViperConfig.SetDefault("API_JWT_SECRET", "SECRET_API")
-	ViperConfig.SetDefault("JWT_EXPIRE", 60*60)
+	ViperConfig.SetDefault("JWT_EXPIRE", 20*60)
 }
 
 func SetupPermission() { //nolint:whitespace
@@ -43,18 +44,27 @@ func SetupPermission() { //nolint:whitespace
 	var err error
 	connectionString := fmt.Sprintf("%s:%s@tcp(%s:%d)/", DBConfig.DB_User, DBConfig.DB_Pass, DBConfig.DB_Host, DBConfig.DB_Port) //nolint:wsl,lll
 	PermissionAdapter, err = gormadapter.NewAdapter(DBConfig.DB_Driver, connectionString)
-
 	if err != nil {
 		panic(fmt.Sprintf("failed to initialize casbin adapter: %v", err))
 	}
-	Enforcer, _ = casbin.NewEnforcer("rbac_model.conf", PermissionAdapter) //nolint:wsl
+	Enforcer, err = casbin.NewEnforcer("./rbac/model.conf", PermissionAdapter) //nolint:wsl
+	if err != nil {
+		fmt.Println("Enforcer init error: ",err)
+	}
 	Auth = &rbac.PermissionMiddleware{
 		Enforcer:      Enforcer, //nolint:gofmt
 		PolicyAdapter: PermissionAdapter,
 		Lookup: func(ctx *fiber.Ctx) string {
+			var user *models.User
 			// 查找当前用户
-
-			return ctx.Params("userName")
+			store := Session.Get(ctx)
+			userID := store.Get("user_id")
+			user,err = models.GetUserById(userID)
+			if err != nil {
+				return user.FirstName
+			}
+			// 默认返回用户
+			return "alice"
 		},
 		Unauthorized: func(c *fiber.Ctx) error {
 			var err fiber.Error

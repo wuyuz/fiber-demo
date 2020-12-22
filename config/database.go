@@ -48,7 +48,6 @@ func SetupDB() (*gorm.DB, error) {
 	}
 	//nolint:wsl,lll
 	var err error //nolint:wsl
-
 	// Connect again with DB name.
 	DB, err = gorm.Open(DBConfig.DB_Driver, connectionString)
 	if err != nil {

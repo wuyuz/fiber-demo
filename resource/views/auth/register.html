@@ -1,0 +1,83 @@
+{% extends 'layout/base.html'%}
+
+{% block title %}
+    {{title}}
+{% endblock %}
+
+{% block content %}
+<div class="static center-class">
+    <form action="/do/register/" method="POST">
+        <p style="color: indianred" class="flex justify-center">{{message.message}}</p>
+        <div class="flex justify-center">
+            <img src="https://www.paypalobjects.com/images/shared/paypal-logo-129x32.svg" alt="" class="py-10">
+        </div>
+
+        <div class="flex justify-center ">
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="first_name">
+                    FirstName
+                </label>
+                <input class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                       name="first_name" id="first_name" type="text" placeholder="姓" style="width: 250px">
+            </div>
+
+        </div>
+        <div class="flex justify-center my-4">
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="last_name">
+                    LastName
+                </label>
+                <input class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                       name="last_name" id="last_name" type="text" placeholder="名" style="width: 250px">
+            </div>
+        </div>
+        <div class="flex justify-center my-4">
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                    Email
+                </label>
+                <input class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                       name="email"  id="email" type="text" placeholder="邮箱" style="width: 250px">
+            </div>
+        </div>
+        <div class="flex justify-center my-4">
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Password
+                </label>
+                <input class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                       name="password"   id="password" type="text" placeholder="密码" style="width: 250px">
+            </div>
+        </div>
+        <div class="flex justify-center my-4">
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="c_password">
+                    Confirm Password
+                </label>
+                <input class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                       name="c_password"   id="c_password" type="text" placeholder="确认密码" style="width: 250px">
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-60 my-4">注册</button>
+        </div>
+    </form>
+</div>
+
+
+{% endblock %}
+
+{% block styles %}
+<style>
+    .center-class {
+        position: absolute;
+        height: 620px;
+        width: 450px;
+        top: 14%;
+        left: 38%;
+        border-radius: 4px;
+        border: 1px solid #eaeced;
+    }
+
+</style>
+{% endblock %}

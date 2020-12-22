@@ -20,7 +20,6 @@ func (RegisterForm) TableName() string {
 }
 
 func (l *RegisterForm) Signup() (*RegisterForm, error) {
-
 	user, _ := GetUserByEmail(l.Email)
 	if user != nil {
 		return nil, errors.New("User Already Exists")

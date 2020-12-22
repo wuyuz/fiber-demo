@@ -10,6 +10,7 @@ import (
 	"github.com/jinzhu/gorm"
 	"github.com/rs/zerolog"
 	"github.com/sujit-baniya/flash"
+	"fiber-demo/mail"
 )
 
 
@@ -26,11 +27,11 @@ var Hash *HashDriver //nolint:gochecknoglobals
 var Flash *flash.Flash
 
 var Session *session.Session
-//
-//var MailerServer *mail.SMTPServerzytrew/.,
-//
-//var Mailer *mail.SMTPClient
-//
+
+var MailerServer *mail.SMTPServer
+
+var Mailer *mail.SMTPClient
+
 //var Paypal *paypal.Client
 
 //var RedisClient *redis.Client

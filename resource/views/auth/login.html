@@ -1,5 +1,68 @@
 {% extends 'layout/base.html'%}
 
 {% block content %}
-    <h1>Hello Django!</h1>
+<div class="static center-class">
+    <form action="/do/login" method="POST">
+        <div class="flex justify-center">
+            <img src="https://www.paypalobjects.com/images/shared/paypal-logo-129x32.svg" alt="" class="py-10">
+        </div>
+
+        <div class="flex justify-center ">
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="email">
+                    Email
+                </label>
+                <input class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                      name="email" id="email" type="text" placeholder="Email" style="width: 250px">
+            </div>
+
+        </div>
+        <div class="flex justify-center my-4">
+            <div>
+                <label class="block text-gray-700 text-sm font-bold mb-2" for="password">
+                    Password
+                </label>
+                <input class="shadow appearance-none border  rounded w-full py-2 px-3 text-gray-700 leading-tight focus:outline-none focus:shadow-outline"
+                     name="password"  id="password" type="text" placeholder="Password" style="width: 250px">
+            </div>
+        </div>
+        <div class="flex justify-center">
+            <button class="bg-blue-500 hover:bg-blue-700 text-white font-bold py-2 px-4 rounded-full w-60 my-4">登陆</button>
+        </div>
+        <div class="loginSignUpSeparator "><span class="textInSeparator">或</span></div>
+    </form>
+    <div class="flex justify-center">
+        <button class="bg-gray-300  hover:bg-gray-500 text-white font-bold py-2 px-4  w-60 " onclick="window.location.href='/register'" >注册</button>
+    </div>
+</div>
+
+
+{% endblock %}
+
+{% block styles %}
+<style>
+    .center-class {
+        position: absolute;
+        height: 470px;
+        width: 450px;
+        top: 14%;
+        left: 38%;
+        border-radius: 4px;
+        border: 1px solid #eaeced;
+    }
+
+    .loginSignUpSeparator{
+        border-top: 1px solid #cbd2d6;
+        position: relative;
+        margin: 25px 18px 10px;
+        text-align: center;
+    }
+    .textInSeparator{
+        background-color: #fff;
+        padding: 0 .5em;
+        position: relative;
+        color: #6c7378;
+        top: -.7em;
+    }
+</style>
 {% endblock %}

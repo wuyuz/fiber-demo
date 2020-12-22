@@ -138,6 +138,7 @@ func Authenticate(config ...AuthConfig) func(*fiber.Ctx) error {
 		extractor = jwtFromCookie(parts[1])
 	}
 	// Return middleware handler
+	// 验证token
 	return func(c *fiber.Ctx) error {
 		// Filter request to skip middleware
 		// 	一个跳过中间件的方法

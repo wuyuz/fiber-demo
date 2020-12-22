@@ -24,7 +24,6 @@ func (Login) TableName() string {
 }
 
 func (l *Login) CheckLogin() (*User, error) {
-
 	user, err := GetUserByEmail(l.Email)
 	if err != nil {
 		return nil, errors.New("invalid Username or Password")

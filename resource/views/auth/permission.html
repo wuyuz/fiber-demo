@@ -1,0 +1,36 @@
+{% extends 'layout/base.html'%}
+
+{% block content %}
+
+{% include 'navs/nav.html' %}
+<div class="h-screen  px-48 p-10">
+    <div style="background-color: #d9d9d9;padding: 5px">
+        <h3>策略板块</h3>
+        <button type="button" class="btn btn-primary">新增</button>
+        <table class="table">
+            <thead class="thead-dark">
+            <tr>
+                <th class="px-4 py-2">角色</th>
+                <th class="px-4 py-2">资源</th>
+                <th class="px-4 py-2">动作</th>
+                <th class="px-4 py-2">操作</th>
+            </tr>
+            </thead>
+            <tbody>
+            {% for pOne in pAll %}
+            <tr>
+                {% for p in pOne %}
+                <td>{{p}}</td>
+                {% endfor %}
+                <td>
+                    <button type="button" class="btn btn-danger">删除</button>
+                </td>
+            </tr>
+            {% endfor %}
+            </tbody>
+
+        </table>
+    </div>
+
+</div>
+{% endblock %}

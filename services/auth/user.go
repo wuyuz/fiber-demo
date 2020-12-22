@@ -66,6 +66,8 @@ func Logout(c *fiber.Ctx) error {
 }
 
 func AuthCookie(c *fiber.Ctx) error {
-	IsLoggedIn(c)
+	if !IsLoggedIn(c) {
+		c.Redirect("/login")
+	}
 	return c.Next()
 }
